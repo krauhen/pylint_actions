@@ -1,5 +1,5 @@
-import os
+import math
 
 
-def abc(test: str) -> int:
-    return 0
+def pow(base: float, power: float) -> int:
+    return int(value)**power
