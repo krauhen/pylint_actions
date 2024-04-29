@@ -11,7 +11,7 @@ def send(msg):
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a pydantic code fixer."},
+            {"role": "system", "content": "You are a pydantic code fixer. Fix code snippets according to the pylint response. Return only the corrected code."},
             {"role": "user", "content": msg}
         ]
     )
@@ -47,7 +47,7 @@ for filename in filenames:
             line_nr = right_part.split(":")[0]
 
             with open(filename, "r") as f:
-                text = "Fix this code snippet according to the pylint response. Return only the corrected code.\n\n"
+                text = ""
                 text += f"Pylint message: {msg}\n"
                 text += f"Filename: {filename}\n"
                 text += f"Line Number: {line_nr}\n"
@@ -59,7 +59,7 @@ for filename in filenames:
             print(text)
             print()
             answer = send(msg)
-            print(answer.choices[0].message)
+            print(answer.choices[0].message.content)
             print()
             print("============================================================================================")
     print()
