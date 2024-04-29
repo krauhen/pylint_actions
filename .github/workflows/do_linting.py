@@ -81,5 +81,9 @@ for filename in filenames:
             print()
             print("============================================================================================")
     print()
+
+    content = content.replace("```python", "")
+    content = content.replace("```", "")
+    
     with open(filename, "w") as f:
         f.write(content)
