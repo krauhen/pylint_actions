@@ -17,7 +17,7 @@ def send(msg):
     )
     return completion
 
-BASE_PATH = ""  # "./.github/workflows/"
+BASE_PATH = "./.github/workflows/"
 PYLINT_WHITELIST = os.path.join(BASE_PATH, ".pylint_whitelist.txt")
 ARGS = []
 
