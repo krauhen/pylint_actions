@@ -20,4 +20,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        python do_linting.py $(pylint $(git ls-files '*.py') --exit-zero)
+        python ./.github/workflows/do_linting.py $(pylint $(git ls-files '*.py') --exit-zero)
