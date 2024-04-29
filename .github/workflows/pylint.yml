@@ -23,3 +23,5 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         python ./.github/workflows/do_linting.py
+      env:
+        OPENAI_API_KEY: ${{ vars.OPENAI_API_KEY }}
