@@ -62,11 +62,12 @@ for filename in filenames:
                     text += f"File-content:\n"
                     content = f.readlines()
                     content = "".join(content)
+                    text += "```python\n"
+                    text += content
+                    text += "```\n"
                 
             text += "\n"
-            text += "```python\n"
             text += content
-            text += "```\n"
             text += "\n"
             
             answer, prompt = send(text)
