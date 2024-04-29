@@ -17,7 +17,7 @@ def send(msg):
     prompt += "Return only the corrected code in the form: \n\n```python\n CODE_GOES_HERE\n```\n\n"
     prompt += "\n\n"
     prompt += msg
-    prompt += "\n\"
+    prompt += "\n\n"
     
     client = OpenAI(api_key=OPENAI_API_KEY)
     completion = client.chat.completions.create(
