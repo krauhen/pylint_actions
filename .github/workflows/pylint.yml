@@ -19,4 +19,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
     - name: Analysing the code with pylint
-      run: echo $(pylint $(git ls-files '*.py')) > pylint_output.txt
+      run: |
+        PYLINT_OUTPUT=$(pylint $(git ls-files '*.py'))
+        echo $PYLINT_OUTPUT >> pylint_result.txt
