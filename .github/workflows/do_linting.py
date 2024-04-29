@@ -6,6 +6,9 @@ from io import StringIO
 
 from openai import OpenAI
 
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+LLM = os.environ.get(LLM)
+
 def send(msg):
 
     prompt = ""
@@ -15,9 +18,9 @@ def send(msg):
     prompt += "\n"
     prompt += msg
     
-    client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+    client = OpenAI(api_key=OPENAI_API_KEY)
     completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model=LLM,
         messages=[
             {"role": "user", "content": prompt}
         ]
