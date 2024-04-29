@@ -43,33 +43,39 @@ for filename in filenames:
     sys.stdout.close()
     sys.stdout = stdout
 
+    content = None
     lines = test.split('\n')
     for line in lines:
         if (".py:") in line:
-            print("============================================================================================")
             left_part, right_part = line.split(".py:")
 
             msg = " ".join(line.split(" ")[1:])
             filename = left_part + ".py"
             line_nr = right_part.split(":")[0]
 
-            with open(filename, "r") as f:
-                text = ""
-                text += f"Pylint message: {msg}\n"
-                text += f"Filename: {filename}\n"
-                text += f"Line Number: {line_nr}\n"
-                text += f"File-content:\n"
-                text += "```python\n"
-                content = f.readlines()
-                content = "".join(content)
-                text += "\n"
-                text += content
-                text += "```\n"
-                text += "\n"
+            if content is None:
+                with open(filename, "r") as f:
+                    text = ""
+                    text += f"Pylint message: {msg}\n"
+                    text += f"Filename: {filename}\n"
+                    text += f"Line Number: {line_nr}\n"
+                    text += f"File-content:\n"
+                    content = f.readlines()
+                    content = "".join(content)
+                
+            text += "\n"
+            text += "```python\n"
+            text += content
+            text += "```\n"
+            text += "\n"
+            
             answer, prompt = send(text)
+            content = answer.choices[0].message.content
+            print("============================================================================================")
             print(prompt)
             print()
-            print(answer.choices[0].message.content)
+            print("============================================================================================")
+            print(content)
             print()
             print("============================================================================================")
     print()
