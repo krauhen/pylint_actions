@@ -22,7 +22,7 @@ def send(msg):
             {"role": "user", "content": prompt}
         ]
     )
-    return completion
+    return completion, prompt
 
 BASE_PATH = "./.github/workflows/"
 PYLINT_WHITELIST = os.path.join(BASE_PATH, ".pylint_whitelist.txt")
