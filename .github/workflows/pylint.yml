@@ -27,7 +27,8 @@ jobs:
         OPENAI_API_KEY: ${{ vars.OPENAI_API_KEY }}
     - uses: EndBug/add-and-commit@v9
       with:
-        default_author: github_actions
+        author_name: krauhen
+        author_email: henning.krause90@gmail.com
         add: '*'
         message: 'AI-linted code from pylint and OpenAI(GPT-3.5-turbo)'
         new_branch: auto-pylinted
