@@ -1,16 +1,31 @@
-from pylint import epylint as lint
+import os
+import sys
 
+from pylint import lint
+from io import StringIO
 
-with open("./.github/workflows/.pylint_whitelist.txt", "r") as f:
-    lines = f.readlines()
+BASE_PATH = "./.github/workflows/"
+PYLINT_WHITELIST = os.path.join(BASE_PATH, ".pylint_whitelist.txt")
+ARGS = []
 
-for line in lines:
-    print(line)
-    print()
-    (pylint_stdout, pylint_stderr) = lint.py_run(line, return_std=True)
-    print("pylint_stdout")
-    print(pylint_stdout)
-    print()
-    print("pylint_stderr")
-    print(pylint_stderr)
+with open(PYLINT_WHITELIST, "r") as f:
+    filenames = f.readlines()
+
+for filename in filenames
+
+    filename = os.path.join(BASE_PATH, filename)
+
+    stdout = sys.stdout
+    sys.stdout = StringIO()
+    r = lint.Run([filename]+ARGS, exit=False)
+
+    test = sys.stdout.getvalue()
+    sys.stdout.close()
+    sys.stdout = stdout
+
+    lines = test.split('\n')
+    print(filename)
+    for line in lines:
+        if (".py:") in line:
+            print(line)
     print()
