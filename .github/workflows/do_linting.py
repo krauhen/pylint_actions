@@ -11,9 +11,6 @@ ARGS = []
 with open(PYLINT_WHITELIST, "r") as f:
     filenames = f.readlines()
 
-print(filenames)
-print()
-
 for filename in filenames:
 
     filename = filename.strip()
@@ -27,10 +24,10 @@ for filename in filenames:
     sys.stdout = stdout
 
     lines = test.split('\n')
-    print(lines)
-    print()
+    print("====================================================================")
     print(filename)
     for line in lines:
         if (".py:") in line:
             print(line)
+    print("====================================================================")
     print()
