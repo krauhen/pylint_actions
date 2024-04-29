@@ -33,5 +33,6 @@ jobs:
         message: 'AI-linted code from pylint and OpenAI(GPT-3.5-turbo)'
         new_branch: auto-pylinted
         fetch: true
+        pull: true
         push: true
         tag_push: '--force'
