@@ -11,7 +11,7 @@ def send(msg):
     prompt = ""
     prompt += "You are a pydantic code fixer.\n"
     prompt += "Fix code snippets according to the pylint response.\n"
-    prompt += "Return only the corrected code in the form: ```python\n CODE_GOES_HERE\n```.\n"
+    prompt += "Return only the corrected code in the form: \n\n```python\n CODE_GOES_HERE\n```\n"
     prompt += "\n"
     prompt += msg
     
@@ -66,7 +66,7 @@ for filename in filenames:
                 text += content
                 text += "```\n"
                 text += "\n"
-            answer, prompt = send(msg)
+            answer, prompt = send(text)
             print(prompt)
             print()
             print(answer.choices[0].message.content)
