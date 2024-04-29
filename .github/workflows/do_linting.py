@@ -13,8 +13,6 @@ with open(PYLINT_WHITELIST, "r") as f:
 
 for filename in filenames:
 
-    filename = os.path.join(BASE_PATH, filename)
-
     stdout = sys.stdout
     sys.stdout = StringIO()
     r = lint.Run([filename]+ARGS, exit=False)
