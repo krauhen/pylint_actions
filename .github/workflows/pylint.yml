@@ -19,10 +19,4 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
     - name: Analysing the code with pylint
-      run: |
-        pylint $(git ls-files '*.py') > pylint_output.txt
-    - name: Upload pylint results
-      uses: actions/upload-artifact@v2
-      with:
-        name: pylint-results
-        path: pylint_output.txt
+      run: echo $(pylint $(git ls-files '*.py')) > pylint_output.txt
