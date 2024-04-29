@@ -5,6 +5,9 @@ on: [push]
 jobs:
   build:
     environment: base
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      LLM: ${{ secrets.LLM }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,9 +24,6 @@ jobs:
         pip install openai
         pip install pylint
     - name: Analysing the code with pylint
-      env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        LLM: ${{ secrets.LLM }}
       run: |
         python ./.github/workflows/do_linting.py
     - uses: EndBug/add-and-commit@v9
