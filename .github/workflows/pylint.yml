@@ -21,3 +21,4 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         PYLINT_OUTPUT="$(pylint $(git ls-files '*.py') --exit-zero)"
+        echo $PYLINT_OUTPUT
