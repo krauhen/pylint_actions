@@ -14,7 +14,7 @@ def send(msg):
     prompt = ""
     prompt += "You are a pylint code fixer.\n"
     prompt += "Fix code snippets according to the pylint response.\n"
-    prompt += "Return the full input code segment in the form: \n\n```python\n CODE_GOES_HERE\n```\n without any additional text.\n"
+    prompt += "Return only the corrected code in the form: \n\n```python\n CODE_GOES_HERE\n```\n"
     prompt += "\n"
     prompt += msg
     
@@ -46,43 +46,39 @@ for filename in filenames:
     sys.stdout.close()
     sys.stdout = stdout
 
-    content = None
     lines = test.split('\n')
+
+    msg = ""
+    for line in lines:
+        msg += " ".join(line.split(" ")[1:]) + "\n"
+    
     for line in lines:
         if (".py:") in line:
             left_part, right_part = line.split(".py:")
-
-            msg = " ".join(line.split(" ")[1:])
             filename = left_part + ".py"
-            line_nr = right_part.split(":")[0]
+            break
 
-            text = ""
-            text += f"Pylint message: {msg}\n"
-            text += f"Filename: {filename}\n"
-            text += f"Line Number: {line_nr}\n"
-            text += f"File-content:\n"
-            
-            if content is None:
-                with open(filename, "r") as f:
-                    content = f.readlines()
-                    content = "".join(content)
-                    text += "```python\n"
-                    text += content
-                    text += "```\n"
-            else:
-                text += "\n"
-                text += content
-                text += "\n"
-            
-            answer, prompt = send(text)
-            content = answer.choices[0].message.content
-            print("============================================================================================")
-            print(prompt)
-            print()
-            print("============================================================================================")
-            print(content)
-            print()
-            print("============================================================================================")
+    text = ""
+    text += f"Pylint messages: \n{msg}\n"
+    text += f"Filename: {filename}\n"
+    text += f"File-content:\n"
+    
+    with open(filename, "r") as f:
+        content = f.readlines()
+        content = "".join(content)
+        text += "```python\n"
+        text += content
+        text += "```\n"
+    
+    answer, prompt = send(text)
+    content = answer.choices[0].message.content
+    print("============================================================================================")
+    print(prompt)
+    print()
+    print("============================================================================================")
+    print(content)
+    print()
+    print("============================================================================================")
     print()
 
     content = content.replace("```python", "")
