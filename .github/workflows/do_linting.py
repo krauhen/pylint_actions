@@ -66,9 +66,9 @@ for filename in filenames:
                 text += content
                 text += "```\n"
                 text += "\n"
-            print(text)
+            answer, prompt = send(msg)
+            print(prompt)
             print()
-            answer = send(msg)
             print(answer.choices[0].message.content)
             print()
             print("============================================================================================")
