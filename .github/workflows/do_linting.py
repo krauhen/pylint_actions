@@ -1,6 +1,6 @@
 import pylint
 
-with open(".pylint_whitelist.txt", "r") as f:
+with open("./.github/workflows/.pylint_whitelist.txt", "r") as f:
     lines = f.readlines()
 
 for line in lines:
