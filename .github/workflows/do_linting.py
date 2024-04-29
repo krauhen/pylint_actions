@@ -53,22 +53,23 @@ for filename in filenames:
             filename = left_part + ".py"
             line_nr = right_part.split(":")[0]
 
+            text = ""
+            text += f"Pylint message: {msg}\n"
+            text += f"Filename: {filename}\n"
+            text += f"Line Number: {line_nr}\n"
+            text += f"File-content:\n"
+            
             if content is None:
                 with open(filename, "r") as f:
-                    text = ""
-                    text += f"Pylint message: {msg}\n"
-                    text += f"Filename: {filename}\n"
-                    text += f"Line Number: {line_nr}\n"
-                    text += f"File-content:\n"
                     content = f.readlines()
                     content = "".join(content)
                     text += "```python\n"
                     text += content
                     text += "```\n"
-                
-            text += "\n"
-            text += content
-            text += "\n"
+            else:
+                text += "\n"
+                text += content
+                text += "\n"
             
             answer, prompt = send(text)
             content = answer.choices[0].message.content
