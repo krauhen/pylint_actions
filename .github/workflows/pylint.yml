@@ -7,11 +7,11 @@ jobs:
     environment: base
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      LLM: ${{ secrets.LLM }}
+      LLM: ${{ envs.LLM }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10"]
+        python-version: ["3.9"]
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
@@ -31,6 +31,6 @@ jobs:
         author_name: krauhen
         author_email: henning.krause90@gmail.com
         add: '*.py --force'
-        message: 'AI-linted code from pylint and OpenAI(GPT-3.5-turbo)'
+        message: 'AI-linted code from pylint and OpenAI(${{ envs.LLM }})'
         new_branch: auto-pylinted
         push: origin auto-pylinted --force
