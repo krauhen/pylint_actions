@@ -52,10 +52,12 @@ for filename in filenames:
                 text += f"Filename: {filename}\n"
                 text += f"Line Number: {line_nr}\n"
                 text += f"File-content:\n"
+                text += "```python\n"
                 content = f.readlines()
                 content = "".join(content)
                 text += "\n"
                 text += content
+                text += "```\n"
                 text += "\n"
             print(text)
             print()
