@@ -7,12 +7,19 @@ from io import StringIO
 from openai import OpenAI
 
 def send(msg):
+
+    prompt = ""
+    prompt += "You are a pydantic code fixer.\n"
+    prompt += "Fix code snippets according to the pylint response.\n"
+    prompt += "Return only the corrected code in the form: ```python\n CODE_GOES_HERE\n```.\n"
+    prompt += "\n"
+    prompt += msg
+    
     client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a pydantic code fixer. Fix code snippets according to the pylint response. Return only the corrected code in the form: ```python\n CODE_GOES_HERE\n```"},
-            {"role": "user", "content": msg}
+            {"role": "user", "content": prompt}
         ]
     )
     return completion
