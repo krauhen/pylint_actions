@@ -15,7 +15,7 @@ def send(msg):
     prompt += "You are a pylint code fixer.\n"
     prompt += "Fix code snippets according to the pylint response.\n"
     prompt += "Return only the corrected code in the form: \n\n```python\n CODE_GOES_HERE\n```\n"
-    prompt += "\n"
+    prompt += "\n\n"
     prompt += msg
     
     client = OpenAI(api_key=OPENAI_API_KEY)
@@ -59,8 +59,7 @@ for filename in filenames:
             break
 
     text = ""
-    text += f"Pylint messages: \n{msg}\n"
-    text += f"Filename: {filename}\n"
+    text += f"Result of pylint static code analysis, fix these warnings/errors: \n{msg}\n\n"
     text += f"File-content:\n"
     
     with open(filename, "r") as f:
