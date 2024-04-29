@@ -7,7 +7,7 @@ from io import StringIO
 from openai import OpenAI
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-LLM = os.environ.get(LLM)
+LLM = os.environ.get("LLM")
 
 def send(msg):
 
