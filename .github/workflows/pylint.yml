@@ -29,7 +29,7 @@ jobs:
       with:
         author_name: krauhen
         author_email: henning.krause90@gmail.com
-        add: '*'
+        add: '* --force'
         message: 'AI-linted code from pylint and OpenAI(GPT-3.5-turbo)'
         new_branch: auto-pylinted
         fetch: true
