@@ -24,7 +24,7 @@ jobs:
       run: |
         python ./.github/workflows/do_linting.py
       env:
-        OPENAI_API_KEY: ${{ vars.OPENAI_API_KEY }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     - uses: EndBug/add-and-commit@v9
       with:
         author_name: krauhen
