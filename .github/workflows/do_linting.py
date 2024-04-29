@@ -11,7 +11,7 @@ def send(msg):
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "You are a pydantic code fixer. Fix code snippets according to the pylint response. Return only the corrected code."},
+            {"role": "system", "content": "You are a pydantic code fixer. Fix code snippets according to the pylint response. Return only the corrected code in the form: ```python\n CODE_GOES_HERE\n```"},
             {"role": "user", "content": msg}
         ]
     )
