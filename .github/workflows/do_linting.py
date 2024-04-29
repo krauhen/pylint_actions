@@ -11,7 +11,7 @@ ARGS = []
 with open(PYLINT_WHITELIST, "r") as f:
     filenames = f.readlines()
 
-for filename in filenames
+for filename in filenames:
 
     filename = os.path.join(BASE_PATH, filename)
 
