@@ -25,7 +25,6 @@ jobs:
         python ./.github/workflows/do_linting.py
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-    - name: Push changed files to new branch
     - uses: EndBug/add-and-commit@v9
       with:
         author_name: krauhen
