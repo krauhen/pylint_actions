@@ -7,7 +7,7 @@ jobs:
     environment: base
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      LLM: ${{ env.LLM }}
+      LLM: ${{ vars.LLM }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -31,6 +31,6 @@ jobs:
         author_name: krauhen
         author_email: henning.krause90@gmail.com
         add: '*.py --force'
-        message: 'AI-linted code from pylint and OpenAI(${{ env.LLM }})'
+        message: 'AI-linted code from pylint and OpenAI(${{ vars.LLM }})'
         new_branch: auto-pylinted
         push: origin auto-pylinted --force
