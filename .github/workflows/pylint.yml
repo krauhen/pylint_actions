@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   build:
+    environment: base
     runs-on: ubuntu-latest
     strategy:
       matrix:
