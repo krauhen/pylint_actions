@@ -14,9 +14,10 @@ def send(msg):
     prompt = ""
     prompt += "You are a pylint code fixer.\n"
     prompt += "Fix code snippets according to the pylint response.\n"
-    prompt += "Return only the corrected code in the form: \n\n```python\n CODE_GOES_HERE\n```\n"
+    prompt += "Return only the corrected code in the form: \n\n```python\n CODE_GOES_HERE\n```\n\n"
     prompt += "\n\n"
     prompt += msg
+    prompt += "\n\"
     
     client = OpenAI(api_key=OPENAI_API_KEY)
     completion = client.chat.completions.create(
@@ -50,7 +51,8 @@ for filename in filenames:
 
     msg = ""
     for line in lines:
-        msg += " ".join(line.split(" ")[1:]) + "\n"
+        if (".py:") in line:
+            msg += " ".join(line.split(" ")[1:]) + "\n"
     
     for line in lines:
         if (".py:") in line:
@@ -60,7 +62,7 @@ for filename in filenames:
 
     text = ""
     text += f"Result of pylint static code analysis, fix these warnings/errors: \n{msg}\n\n"
-    text += f"File-content:\n"
+    text += f"File-content:\n\n"
     
     with open(filename, "r") as f:
         content = f.readlines()
