@@ -14,7 +14,7 @@ def send(msg):
     prompt = ""
     prompt += "You are a pylint code fixer.\n"
     prompt += "Fix code snippets according to the pylint response.\n"
-    prompt += "Return only the corrected code in the form: \n\n```python\n CODE_GOES_HERE\n```\n"
+    prompt += "Return the full input code segment in the form: \n\n```python\n CODE_GOES_HERE\n```\n without any additional text.\n"
     prompt += "\n"
     prompt += msg
     
