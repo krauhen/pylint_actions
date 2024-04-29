@@ -56,6 +56,7 @@ for filename in filenames:
                 content = "".join(content)
                 text += "\n"
                 text += content
+                text += "\n"
             print(text)
             print()
             answer = send(msg)
