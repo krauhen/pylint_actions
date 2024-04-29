@@ -20,5 +20,4 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        touch pylint_result.txt
         pylint $(git ls-files '*.py') > pylint_result.txt
