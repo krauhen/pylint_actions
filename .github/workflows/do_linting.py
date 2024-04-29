@@ -1,4 +1,5 @@
-import pylint
+from pylint import epylint as lint
+
 
 with open("./.github/workflows/.pylint_whitelist.txt", "r") as f:
     lines = f.readlines()
