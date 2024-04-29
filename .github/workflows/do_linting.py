@@ -16,6 +16,8 @@ print()
 
 for filename in filenames:
 
+    filename = filename.strip()
+
     stdout = sys.stdout
     sys.stdout = StringIO()
     r = lint.Run([filename]+ARGS, exit=False)
