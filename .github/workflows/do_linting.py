@@ -51,7 +51,7 @@ for filename in filenames:
 
     msg = ""
     for line in lines:
-        if ".py:" in line and "import-error" not in line:
+        if ".py:" in line:
             msg += " ".join(line.split(" ")[1:]) + "\n"
     
     for line in lines:
