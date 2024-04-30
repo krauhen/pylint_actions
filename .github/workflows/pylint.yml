@@ -28,8 +28,8 @@ jobs:
         python ./.github/workflows/do_linting.py
     - uses: EndBug/add-and-commit@v9
       with:
-        author_name: krauhen
-        author_email: henning.krause90@gmail.com
+        author_name: ${{ secrets.AUTHOR_NAME }}
+        author_email: ${{ secrets.AUTHOR_EMAIL }}
         add: '*.py --force'
         message: 'AI-linted code from pylint and OpenAI(${{ vars.LLM }})'
         new_branch: auto-pylinted
